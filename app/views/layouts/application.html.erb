@@ -12,11 +12,14 @@
 
     <li><%= link_to "Home", root_path %></li>
     <li>
-      <% if user_signed_in?  %>
-        <%= link_to "Logout", destroy_user_session_path, :method => :delete  %>
-        <%= link_to "Hello " + current_user.email, edit_user_registration_path %>
-
-      <% end %>
+      <li><%if user_signed_in? %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+        <li class="active"><%= link_to "Hello " + current_user.email, edit_user_registration_path%></li>
+        <li><%else%></li>
+        <li><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></li>
+        <li><%end%></li>
+        <li class="notice"><%= notice %></li>
+        <li class="alert"><%= alert %></li>
 
     </li>
     <p class="notice"><%= notice %></p>
@@ -24,3 +27,4 @@
     <%= yield %>
   </body>
 </html>
+
