@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title
+      | AdminPanel
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    body
+      #navbar.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li
+            = link_to "Home", root_path
+          li
+            - if user_signed_in?
+              li
+                = link_to "Logout", destroy_user_session_path, :method => :delete
+              li.active
+                = link_to "Hello " + current_user.email, edit_user_registration_path
+              li
+
+            - else
+              li
+                = link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path
+              li
+
+          li.notice
+            = notice
+          li.alert
+            = alert
+    .container
+      = yield
