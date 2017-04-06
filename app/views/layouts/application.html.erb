@@ -9,6 +9,16 @@
   </head>
 
   <body>
+
+    <li><%= link_to "Home", root_path %></li>
+    <li>
+      <% if user_signed_in?  %>
+        <%= link_to "Logout", destroy_user_session_path, :method => :delete  %>
+        <%= link_to "Hello " + current_user.email, edit_user_registration_path %>
+
+      <% end %>
+
+    </li>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
