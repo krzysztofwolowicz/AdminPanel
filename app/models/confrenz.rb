@@ -1,0 +1,2 @@
+class Confrenz < ApplicationRecord
+end
