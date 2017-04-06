@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :confrens
+
+  resources :panels
+
   devise_for :users
   root 'home#index'
 
